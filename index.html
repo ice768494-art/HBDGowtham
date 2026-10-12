@@ -53,6 +53,10 @@ button:hover{transform:translateY(-2px) scale(1.02)}
 </style>
 </head>
 <body>
+<audio id="bgMusic" loop preload="auto">
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
 <canvas id="confetti"></canvas>
 
 <section class="screen" id="intro">
@@ -77,7 +81,7 @@ button:hover{transform:translateY(-2px) scale(1.02)}
       Success Is permanent 🔥
     </p>
     <div class="signature">— Saran ❤️</div>
-    <p class="music-note">🎵 Music Venum Na Add Paniko </p>
+    <p class="music-note">🎵 Background music</p>
     <button onclick="showFinal()">One More Thing 👀</button>
   </div>
 </section>
@@ -97,6 +101,12 @@ button:hover{transform:translateY(-2px) scale(1.02)}
 function openWish(){
   document.getElementById('intro').style.display='none';
   document.getElementById('wish').classList.add('show');
+
+  // Browsers generally allow audio after a user tap/click.
+  const music = document.getElementById('bgMusic');
+  music.volume = 0.7;
+  music.play().catch(() => {});
+
   confetti();
 }
 function showFinal(){
